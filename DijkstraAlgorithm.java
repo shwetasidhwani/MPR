@@ -39,7 +39,7 @@ public class DijkstraAlgorithm {
 
         System.out.println("Shortest Path:");
         for (int i = 0; i < pathLength; i++) {
-            System.out.print(path[i]+" ");
+            System.out.print(path[i]);
         }
         System.out.println("\nShortest distance from source to destination: " + dist[destination]);
     }
