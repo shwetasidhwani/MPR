@@ -6,6 +6,7 @@ public class dijkstra_algo {
     private static final int INF = Integer.MAX_VALUE;
 
     public void dijkstra(int[][] graph, int source, int destination, int[] path) {
+        int x = 0;
         int n = graph.length;
         int[] dist = new int[n]; // array to store shortest distances
         boolean[] visited = new boolean[n];// array to mark visited nodes
@@ -18,36 +19,22 @@ public class dijkstra_algo {
             for (int v = 0; v < n; v++) {
                 if (!visited[v] && graph[u][v] != 0 && dist[u] != INF && dist[u] + graph[u][v] < dist[v]) {
                     dist[v] = dist[u] + graph[u][v];
-                    
+                    path[x] = v;
+                        x++;
                 }
             }
         }
-        path(path, dist, visited);
         printDistance(dist, destination);
-        // printPath(path);
-    }
-
-    void path(int[] path,int[] dist,boolean[] visited){
-        int x=0;
-        int minDist = INF;
-        // int minVertex = -1;
-        for (int i = 0; i < dist.length; i++) {
-            if (!visited[i] && dist[i] < minDist) {
-                path[x]=i;
-            }
-        }
         printPath(path);
     }
 
     private int minDistance(int[] dist, boolean[] visited) {
-        // int x=0;
         int minDist = INF;
         int minVertex = -1;
         for (int i = 0; i < dist.length; i++) {
             if (!visited[i] && dist[i] < minDist) {
                 minDist = dist[i];
                 minVertex = i;
-                // path[x]=i;
             }
         }
         return minVertex;

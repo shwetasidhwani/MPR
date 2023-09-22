@@ -12,7 +12,7 @@ public class dijkstra_algo {
         Arrays.fill(dist, INF);//// initialize all distances to infinite
         dist[source] = 0;// distance from source is 0
         for (int i = 0; i < n - 1; i++) {
-            int u = minDistance(dist, visited);// selecting the vertex with minimum distance
+            int u = minDistance(dist, visited,path);// selecting the vertex with minimum distance
             visited[u] = true;// mark the vertex as visited
 
             for (int v = 0; v < n; v++) {
@@ -22,33 +22,34 @@ public class dijkstra_algo {
                 }
             }
         }
-        path(path, dist, visited);
         printDistance(dist, destination);
         // printPath(path);
     }
 
-    void path(int[] path,int[] dist,boolean[] visited){
-        int x=0;
-        int minDist = INF;
-        // int minVertex = -1;
-        for (int i = 0; i < dist.length; i++) {
-            if (!visited[i] && dist[i] < minDist) {
-                path[x]=i;
-            }
-        }
-        printPath(path);
-    }
+    // void path(int[] path,int[] dist,boolean[]){
+    //     int x=0;
+    //     int minDist = INF;
+    //     int minVertex = -1;
+    //     for (int i = 0; i < dist.length; i++) {
+    //         if (!visited[i] && dist[i] < minDist) {
+    //             path[x]=i;
+    //         }
+    //     }
+    // }
 
-    private int minDistance(int[] dist, boolean[] visited) {
-        // int x=0;
+    private int minDistance(int[] dist, boolean[] visited,int[] path) {
+        int x=0;
         int minDist = INF;
         int minVertex = -1;
         for (int i = 0; i < dist.length; i++) {
             if (!visited[i] && dist[i] < minDist) {
                 minDist = dist[i];
                 minVertex = i;
-                // path[x]=i;
+                path[x]=i;
             }
+        }
+        for(int i=0;i<path.length;i++){
+            System.out.println(path[i]);
         }
         return minVertex;
     }
@@ -56,11 +57,11 @@ public class dijkstra_algo {
     private void printDistance(int[] dist, int dest) {
         System.out.println("Shortest distance from source: " + dist[dest]);
     }
-    private void printPath(int[] path){
-        for(int i=0;i<path.length;i++){
-            System.out.println(path[i]);
-        }
-    }
+    // private void printPath(int[] path){
+    //     for(int i=0;i<path.length;i++){
+    //         System.out.println(path[i]);
+    //     }
+    // }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
