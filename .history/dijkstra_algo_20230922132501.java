@@ -5,7 +5,7 @@ import java.util.*;
 public class dijkstra_algo {
     private static final int INF = Integer.MAX_VALUE;
 
-    public void dijkstra(int[][] graph, int source, int destination) {
+    public void dijkstra(int[][] graph, int source) {
         int n = graph.length;
         int[] dist = new int[n]; // array to store shortest distances
         boolean[] visited = new boolean[n];// array to mark visited nodes
@@ -21,7 +21,7 @@ public class dijkstra_algo {
                 }
             }
         }
-        printDistance(dist,destination);
+        printDistance(dist);
     }
 
     private int minDistance(int[] dist, boolean[] visited) {
@@ -36,14 +36,17 @@ public class dijkstra_algo {
         return minVertex;
     }
 
-    private void printDistance(int[] dist, int dest) {
-        System.out.println("Shortest distance from source: "+ dist[dest]);
+    private void printDistance(int[] dist) {
+        System.out.println("Shortest distance from source: ");
+        for (int i = 0; i < dist.length; i++) {
+            System.out.println(i+" Vertex :" + dist[i]);
+        }
     }
 
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Enter the final vertex :");
-        int v=sc.nextInt();
+        // Scanner sc=new Scanner(System.in);
+        // System.out.println("Enter the number of vertices :");
+        // int vNum=sc.nextInt();
         // int[][] graph=new int[vNum][vNum];
         // for(int i=0;i<vNum;i++){
         // for(int j=0;j<i;j++){
@@ -65,7 +68,7 @@ public class dijkstra_algo {
                 { 0, 0, 6, 5, 0 },
         };
         dijkstra_algo ob = new dijkstra_algo();
-        ob.dijkstra(graph, 0,v);
-        sc.close();
+        ob.dijkstra(graph, 0);
+        // sc.close();
     }
 }
