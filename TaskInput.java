@@ -56,6 +56,6 @@ public class TaskInput {
 
             tasks.add(task);//ADDING CURRENT TASK TO TASK LIST
         }
-
+        scanner.close();
     }
 }

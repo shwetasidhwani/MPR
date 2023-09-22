@@ -6,7 +6,7 @@ public class dijkstra_algo {
     private static final int INF = Integer.MAX_VALUE;
 
     public void dijkstra(int[][] graph, int source, int destination, int[] path) {
-        int x=0;
+        // int x=0;
         int n = graph.length;
         int[] dist = new int[n]; // array to store shortest distances
         boolean[] visited = new boolean[n];// array to mark visited nodes
