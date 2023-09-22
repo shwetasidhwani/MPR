@@ -54,7 +54,7 @@ public class TaskInput {
                 }
             }
 
-            tasks.add(task);//ADDING CURRENT TASK TO TAKS LIST
+            tasks.add(task);//ADDING CURRENT TASK TO TASK LIST
         }
 
     }

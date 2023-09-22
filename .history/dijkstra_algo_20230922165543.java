@@ -70,6 +70,19 @@ public class dijkstra_algo {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the final vertex :");
         int v = sc.nextInt();
+        // int[][] graph=new int[vNum][vNum];
+        // for(int i=0;i<vNum;i++){
+        // for(int j=0;j<i;j++){
+        // System.out.println("Enter whether or not edge exists between "+i+" and "+j+"
+        // (0/1) :");
+        // int choice=sc.nextInt();
+        // if(choice==1){
+        // System.out.println("Enter distance: ");
+        // int d=sc.nextInt();
+        // graph[j][i]=graph[i][j]=d;
+        // }
+        // }
+        // }
         int[][] graph = {
                 { 0, 2, 0, 1, 0 },
                 { 2, 0, 4, 3, 0 },
@@ -77,7 +90,7 @@ public class dijkstra_algo {
                 { 1, 3, 0, 0, 5 },
                 { 0, 0, 6, 5, 0 },
         };
-        int[] path = new int[6];
+        int[] path = new int[20];
         dijkstra_algo ob = new dijkstra_algo();
         ob.dijkstra(graph, 0, v, path);
         sc.close();
