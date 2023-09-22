@@ -39,7 +39,7 @@ public class DijkstraAlgorithm {
 
         System.out.println("Shortest Path:");
         for (int i = 0; i < pathLength; i++) {
-            System.out.print(path[i]   + "  ");
+            System.out.print(path[i]);
         }
         System.out.println("\nShortest distance from source to destination: " + dist[destination]);
     }
@@ -75,11 +75,11 @@ public class DijkstraAlgorithm {
         int v = sc.nextInt();
 
         int[][] graph = {
-                { 0, 2, 0, 1, 0 },
-                { 2, 0, 4, 3, 0 },
-                { 0, 4, 0, 0, 6 },
-                { 1, 3, 0, 0, 5 },
-                { 0, 0, 6, 5, 0 },
+            { 0, 2, 0, 1, 0 },
+            { 2, 0, 4, 3, 0 },
+            { 0, 4, 0, 0, 6 },
+            { 1, 3, 0, 0, 5 },
+            { 0, 0, 6, 5, 0 },
         };
 
         int[] path = new int[graph.length];
