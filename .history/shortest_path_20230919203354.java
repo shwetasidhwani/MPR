@@ -8,7 +8,7 @@ class Vertex
     String label; // here, label can represent any possible entity such as person or city
     Vertex(String label){
         this.label = label;
-        //'this' refers to the current object in a Constructor or Method
+        //'this' refers to the current object in a Consstructor or Method
         //refer this: https://www.w3schools.com/java/ref_keyword_this.asp#:~:text=The%20this%20keyword%20refers%20to,a%20method%20or%20constructor%20parameter).
     }
 }
