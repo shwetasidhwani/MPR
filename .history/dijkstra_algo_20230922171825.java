@@ -10,17 +10,17 @@ public class dijkstra_algo {
         int n = graph.length;
         int[] dist = new int[n]; // array to store shortest distances
         boolean[] visited = new boolean[n];// array to mark visited nodes
-        int[] prev=new int[n];
         Arrays.fill(dist, INF);//// initialize all distances to infinite
         dist[source] = 0;// distance from source is 0
         for (int i = 0; i < n - 1; i++) {
             int u = minDistance(dist, visited);// selecting the vertex with minimum distance
             visited[u] = true;// mark the vertex as visited
 
-            for (int v = 0; v < n; v++) {
+            for (int v = destination; v < n; v++) {
                 if (!visited[v] && graph[u][v] != 0 && dist[u] != INF && dist[u] + graph[u][v] < dist[v]) {
                     dist[v] = dist[u] + graph[u][v];
-                    prev[v]=u;
+                    path[x]=v;
+                    x++;
                 }
             }
         }
