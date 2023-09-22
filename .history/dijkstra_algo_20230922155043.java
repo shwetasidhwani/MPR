@@ -20,9 +20,8 @@ public class dijkstra_algo {
                 if (!visited[v] && graph[u][v] != 0 && dist[u] != INF && dist[u] + graph[u][v] < dist[v]) {
                     dist[v] = dist[u] + graph[u][v];
                     path[x] = v;
-                        
+                        x++;
                 }
-                x++;
             }
         }
         printDistance(dist, destination);
