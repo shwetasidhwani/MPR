@@ -75,7 +75,7 @@ public class dijkstra_algo {
                 { 1, 3, 0, 0, 5 },
                 { 0, 0, 6, 5, 0 },
         };
-        int[] path = new int[20];
+        int[] path = new int[25];
         dijkstra_algo ob = new dijkstra_algo();
         ob.dijkstra(graph, 0, v, path);
         sc.close();
