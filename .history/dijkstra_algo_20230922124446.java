@@ -39,7 +39,7 @@ public class dijkstra_algo {
     private void printDistance(int[] dist) {
         System.out.println("Shortest distance from source: ");
         for (int i = 0; i < dist.length; i++) {
-            System.out.println(i+"Vertex :" + dist[i]);
+            System.out.println("Vertex " + i + ":" + dist[i]);
         }
     }
 
