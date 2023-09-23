@@ -1,47 +1,59 @@
 import java.util.*;
 
 public class DijkstraAlgorithm {
-    private static final int INF = Integer.MAX_VALUE;
+    private static final int INFINITY = Integer.MAX_VALUE;
 
-    public void dijkstra(int[][] graph, int source, int destination, int[] path) {
-        int n = graph.length;
-        int[] dist = new int[n]; // array to store shortest distances
-        boolean[] visited = new boolean[n]; // array to mark visited nodes
-        int[] prev = new int[n]; // array to store the previous vertex in the shortest path
+    public void findShortestPath(int[][] graph, int start, int end, int[] path) {
+        int numberOfNodes = graph.length;
+        int[] distances = new int[numberOfNodes]; // Array to store shortest distances
+        boolean[] visited = new boolean[numberOfNodes]; // Array to mark visited nodes
+        int[] previous = new int[numberOfNodes]; // Array to store the previous node in the shortest path
 
-        Arrays.fill(dist, INF);
-        dist[source] = 0;
+        // Set all distances to infinity (we don't know the shortest path yet)
+        for (int i = 0; i < numberOfNodes; i++) {
+            distances[i] = INFINITY;
+        }
 
-        for (int i = 0; i < n - 1; i++) {
-            int u = minDistance(dist, visited);
-            visited[u] = true;
+        // The distance from the start node to itself is 0
+        distances[start] = 0;
 
-            for (int v = 0; v < n; v++) {
-                if (!visited[v] && graph[u][v] != 0 && dist[u] != INF && dist[u] + graph[u][v] < dist[v]) {
-                    dist[v] = dist[u] + graph[u][v];
-                    prev[v] = u;
+        for (int i = 0; i < numberOfNodes - 1; i++) {
+            int currentNode = findClosestUnvisitedNode(distances, visited);
+
+            // Mark the current node as visited
+            visited[currentNode] = true;
+
+            for (int neighborNode = 0; neighborNode < numberOfNodes; neighborNode++) {
+                // If the neighbor is unvisited, there's a path, and it's a shorter path, update the distance
+                if (!visited[neighborNode] && graph[currentNode][neighborNode] != 0
+                        && distances[currentNode] != INFINITY
+                        && distances[currentNode] + graph[currentNode][neighborNode] < distances[neighborNode]) {
+                    distances[neighborNode] = distances[currentNode] + graph[currentNode][neighborNode];
+                    previous[neighborNode] = currentNode;
                 }
             }
         }
 
+        // Reconstruct the shortest path
         int pathLength = 0;
-        int currentVertex = destination;
+        int currentNode = end;
 
-        while (currentVertex != source) {
-            path[pathLength++] = currentVertex;
-            currentVertex = prev[currentVertex];
+        while (currentNode != start) {
+            path[pathLength++] = currentNode;
+            currentNode = previous[currentNode];
         }
 
-        path[pathLength++] = source;
+        path[pathLength++] = start;
 
         // Reverse the path to get it in the correct order
         reverseArray(path, pathLength);
 
+        // Print the shortest path and distance
         System.out.println("Shortest Path:");
         for (int i = 0; i < pathLength; i++) {
-            System.out.print(path[i]   + "  ");
+            System.out.print(path[i] + "   ");
         }
-        System.out.println("\nShortest distance from source to destination: " + dist[destination]);
+        System.out.println("\nShortest distance from start to end: " + distances[end]);
     }
 
     private void reverseArray(int[] arr, int length) {
@@ -57,34 +69,39 @@ public class DijkstraAlgorithm {
         }
     }
 
-    private int minDistance(int[] dist, boolean[] visited) {
-        int minDist = INF;
-        int minVertex = -1;
-        for (int i = 0; i < dist.length; i++) {
-            if (!visited[i] && dist[i] < minDist) {
-                minDist = dist[i];
-                minVertex = i;
+    private int findClosestUnvisitedNode(int[] distances, boolean[] visited) {
+        int minDistance = INFINITY;
+        int minNode = -1;
+
+        for (int i = 0; i < distances.length; i++) {
+            if (!visited[i] && distances[i] < minDistance) {
+                minDistance = distances[i];
+                minNode = i;
             }
         }
-        return minVertex;
+        return minNode;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the final vertex:");
-        int v = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of vertices:");
+        int numberOfVertices = scanner.nextInt();
 
-        int[][] graph = {
-                { 0, 2, 0, 1, 0 },
-                { 2, 0, 4, 3, 0 },
-                { 0, 4, 0, 0, 6 },
-                { 1, 3, 0, 0, 5 },
-                { 0, 0, 6, 5, 0 },
-        };
+        int[][] graph = new int[numberOfVertices][numberOfVertices];
 
-        int[] path = new int[graph.length];
-        DijkstraAlgorithm ob = new DijkstraAlgorithm();
-        ob.dijkstra(graph, 0, v, path);
-        sc.close();
+        System.out.println("Enter the adjacency matrix for the graph:");
+        for (int i = 0; i < numberOfVertices; i++) {
+            for (int j = 0; j < numberOfVertices; j++) {
+                graph[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("Enter the destination vertex:");
+        int destination = scanner.nextInt();
+
+        int[] path = new int[numberOfVertices];
+        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm();
+        dijkstra.findShortestPath(graph, 0, destination, path);
+        scanner.close();
     }
 }
