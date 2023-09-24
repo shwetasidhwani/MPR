@@ -112,21 +112,13 @@ public class PERT {
                 }
             }
 
-            if (!progress) {
+           if (!progress) {
                 throw new RuntimeException("Cyclic dependency, algorithm stopped!");
             }
         }
 
-        Activities[] ret = activities.values().toArray(new Activities[0]);
-        Arrays.sort(ret, new Comparator<Activities>() {
-            @Override
-            public int compare(Activities o1, Activities o2) {
-                int i = o2.Early - o1.Early;
-                if (i != 0)
-                    return i;
-                return 0;
-            }
-        });
+        Activities[] ret = activitiesMap.values().toArray(new Activities[0]);
+        Arrays.sort(ret, Comparator.comparingInt(a -> a.Early));
 
         return ret;
     }
