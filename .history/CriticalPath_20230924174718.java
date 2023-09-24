@@ -1,7 +1,6 @@
-
 import java.util.*;
 
-public class CriticalPathAnalysis {
+public class CriticalPath {
 
     public static void main(String[] args) {
         Map<String, Task> allTasks = new HashMap<>();
@@ -56,23 +55,23 @@ public class CriticalPathAnalysis {
     }
 
     // Task class and criticalPath method (unchanged)
-     static class Task {
-         int cost;
-         int criticalCost;
-         String name;
-         HashSet<Task> dependencies = new HashSet<>();
+    public static class Task {
+        public int cost;
+        public int criticalCost;
+        public String name;
+        public HashSet<Task> dependencies = new HashSet<>();
 
-         Task(String name, int cost) {
+        public Task(String name, int cost) {
             this.name = name;
             this.cost = cost;
         }
 
-         void addDependency(Task task) {
+        public void addDependency(Task task) {
             this.dependencies.add(task);
         }
     }
 
-     static Task[] criticalPath(Map<String, Task> tasks) {
+    public static Task[] criticalPath(Map<String, Task> tasks) {
         HashSet<String> completed = new HashSet<>();
         HashSet<String> remaining = new HashSet<>(tasks.keySet());
 
