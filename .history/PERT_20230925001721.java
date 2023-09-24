@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-public class PERT_20230925001118 {
+public class PERT {
     public static void main(String[] args) {
         Map<String, Activities> allActivities = new HashMap<>();
 
@@ -123,3 +123,10 @@ public class PERT_20230925001118 {
         return ret;
     }
 }
+
+
+
+
+
+
+
