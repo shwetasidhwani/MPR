@@ -83,7 +83,7 @@ public class CPM {
             currentActivity.slack = currentActivity.latestStart - currentActivity.earliestStart;
 
             // Check if 'currentActivity' is on the critical path
-            if (currentActivity.slack == 0 || currentActivity == endActivity) {
+            if (currentActivity.slack == 0 ) {
                 criticalPath.add(currentActivity);
             }
         }
